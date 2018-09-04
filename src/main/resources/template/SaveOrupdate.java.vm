@@ -1,0 +1,80 @@
+package ${package}.vo;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.math.BigDecimal;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import javax.validation.constraints.NotNull;
+
+ /**
+ * 
+ * @ClassName: ${className}SaveOrupdateVO
+ * @Description:  ${comments}-Rest接口
+ * @author ${author}
+ * @version 1.0 
+ * @date ${datetime}
+ */
+@ApiModel(value = "${className}SaveOrupdateVO", description = "${comments}")
+public class ${className}SaveOrupdateVO implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
+#foreach ($column in $columns)
+#if(
+	$column.attrname!='createrId' && 
+	$column.attrname!='createrCode' &&
+	$column.attrname!='createrName' &&
+	$column.attrname!='createrCode' &&
+	$column.attrname!='createTime' &&
+	$column.attrname!='createrCode' &&
+	$column.attrname!='modifierId' &&
+	$column.attrname!='modifierCode' &&
+	$column.attrname!='modifierName' &&
+	$column.attrname!='enterpriseId' &&
+	$column.attrname!='updateTime'
+	)
+	/**
+     * ${column.comments}
+     */
+#if($column.isNullable=='NO' && $column.attrname!='id')
+	@NotNull(message="${column.comments}不能为空!")
+#end
+	@ApiModelProperty(#if($column.isNullable=='NO')required = true,#elseif($column.isNullable=='YES')required = false,#end value = "${column.comments}")
+	private $column.attrType $column.attrname;
+	
+#end
+#end
+
+#foreach ($column in $columns)
+#if(
+	$column.attrname!='createrId' && 
+	$column.attrname!='createrCode' &&
+	$column.attrname!='createrName' &&
+	$column.attrname!='createrCode' &&
+	$column.attrname!='createTime' &&
+	$column.attrname!='createrCode' &&
+	$column.attrname!='modifierId' &&
+	$column.attrname!='modifierCode' &&
+	$column.attrname!='modifierName' &&
+	$column.attrname!='enterpriseId' &&
+	$column.attrname!='updateTime'
+	)
+	/**
+	 * ${column.comments}
+	 */
+	public void set${column.attrName}($column.attrType $column.attrname) {
+		this.$column.attrname = $column.attrname;
+	}
+	
+	/**
+	 * ${column.comments}
+	 */
+	public $column.attrType get${column.attrName}() {
+		return $column.attrname;
+	}
+	
+#end
+#end
+
+}

@@ -1,0 +1,31 @@
+package ${package}.service;
+
+import ${package}.vo.${className}VO;
+import ${package}.vo.${className}SaveOrupdateVO;
+import com.rograndec.feijiayun.chain.common.vo.UserVO;
+
+import java.util.List;
+
+
+
+ /**
+ * 
+ * @ClassName: ${className}Service   
+ * @Description:  ${comments}-接口
+ * @author ${author}
+ * @version 1.0 
+ * @date ${datetime}
+ */
+public interface ${className}Service {
+	
+	
+	List<${className}VO> get${className}Data(UserVO userVO) throws Exception;
+	
+	int save(${className}SaveOrupdateVO ${classname},UserVO userVO) throws Exception;
+	
+	int update(${className}SaveOrupdateVO ${classname},UserVO userVO) throws Exception;
+	
+	int delete(Long id) throws Exception;
+	
+
+}

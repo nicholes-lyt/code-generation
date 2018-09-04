@@ -1,0 +1,63 @@
+package ${package}.service.impl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Map;
+import ${package}.service.${className}Service;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import ${package}.entity.${className};
+import ${package}.vo.${className}VO;
+import ${package}.vo.${className}SaveOrupdateVO;
+import ${package}.dao.${className}Mapper;
+import com.rograndec.feijiayun.chain.common.vo.UserVO;
+
+import com.rograndec.feijiayun.chain.utils.bean.CopyFromNotNullBeanUtils;
+import com.rograndec.feijiayun.chain.utils.bean.EntityUtils;
+
+
+ /**
+ * 
+ * @ClassName: ${className}ServiceImpl   
+ * @Description:  ${comments}-实现接口
+ * @author ${author}
+ * @version 1.0 
+ * @date ${datetime}
+ */
+@Service
+public class ${className}ServiceImpl implements ${className}Service {
+	
+	@SuppressWarnings("unused")
+	private static final Logger logger = LoggerFactory.getLogger(${className}ServiceImpl.class);
+	
+	@Autowired
+	private ${className}Mapper ${classname}Mapper;
+	
+	@Override
+	public List<${className}VO> get${className}Data(UserVO userVO) throws Exception {
+		List<${className}VO> list = null; //需修改
+		return list;
+	}
+
+	@Override
+	public int save(${className}SaveOrupdateVO ${classname}, UserVO userVO) throws Exception {
+		${className} copy = (${className})EntityUtils.reflectAddSetDefaultValue(new ${className}().getClass(),userVO);
+		CopyFromNotNullBeanUtils.copyPropertiesIgnoreNull(${classname},copy);
+		return ${classname}Mapper.insertSelective(copy);
+	}
+
+	@Override
+	public int update(${className}SaveOrupdateVO ${classname},UserVO userVO) throws Exception {
+		${className} copy = (${className})EntityUtils.reflectUpdateSetDefaultValue(new ${className}().getClass(),userVO);
+		CopyFromNotNullBeanUtils.copyPropertiesIgnoreNull(${classname},copy);
+		return ${classname}Mapper.updateByPrimaryKeySelective(copy);
+	}
+
+	@Override
+	public int delete(Long id) throws Exception {
+		return ${classname}Mapper.deleteByPrimaryKey(id);
+	}
+	
+}

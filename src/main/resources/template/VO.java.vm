@@ -1,0 +1,75 @@
+package ${package}.vo;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.math.BigDecimal;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import javax.validation.constraints.NotNull;
+
+ /**
+ * 
+ * @ClassName: ${className}VO
+ * @Description:  ${comments}
+ * @author ${author}
+ * @version 1.0 
+ * @date ${datetime}
+ */
+@ApiModel(value = "${className}VO", description = "${comments}")
+public class ${className}VO implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
+#foreach ($column in $columns)
+#if(
+	$column.attrname!='createrId' && 
+	$column.attrname!='createrCode' &&
+	$column.attrname!='createrName' &&
+	$column.attrname!='createrCode' &&
+	$column.attrname!='createTime' &&
+	$column.attrname!='createrCode' &&
+	$column.attrname!='modifierId' &&
+	$column.attrname!='modifierCode' &&
+	$column.attrname!='modifierName' &&
+	$column.attrname!='updateTime'
+	)
+	/**
+     * ${column.comments}
+     */
+	@ApiModelProperty(#if($column.isNullable=='NO')required = true,#elseif($column.isNullable=='YES')required = false,#end value = "${column.comments}")
+	private $column.attrType $column.attrname;
+	
+#end
+#end
+
+#foreach ($column in $columns)
+#if(
+	$column.attrname!='createrId' && 
+	$column.attrname!='createrCode' &&
+	$column.attrname!='createrName' &&
+	$column.attrname!='createrCode' &&
+	$column.attrname!='createTime' &&
+	$column.attrname!='createrCode' &&
+	$column.attrname!='modifierId' &&
+	$column.attrname!='modifierCode' &&
+	$column.attrname!='modifierName' &&
+	$column.attrname!='updateTime'
+	)
+	/**
+	 * ${column.comments}
+	 */
+	public void set${column.attrName}($column.attrType $column.attrname) {
+		this.$column.attrname = $column.attrname;
+	}
+	
+	/**
+	 * ${column.comments}
+	 */
+	public $column.attrType get${column.attrName}() {
+		return $column.attrname;
+	}
+	
+#end
+#end
+
+}
